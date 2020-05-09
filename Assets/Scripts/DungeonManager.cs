@@ -12,6 +12,8 @@ public class DungeonManager : MonoBehaviour
     [Range(50, 5000)] public int totalFloorCount;
     [Range(0, 100)] public int itemSpawnPercent;
     [Range(0, 100)] public int enemySpawnPercent;
+    [Range(5, 10)] public int roomMaxWidth;
+    [Range(5, 10)] public int roomMaxHeight;
     public bool useRoundedEdges;
     public DungeonType dungeonType;
     [Range(0, 100)] public int windingHallPercent;
@@ -126,8 +128,8 @@ public class DungeonManager : MonoBehaviour
     void RandomRoom(Vector3 myPos)
     {
         // random room at end of long walk
-        int width = Random.Range(1, 5);
-        int height = Random.Range(1, 5);
+        int width = Random.Range(1, roomMaxWidth);
+        int height = Random.Range(1, roomMaxHeight);
 
         for (int w = -width; w <= width; w++)
         {
