@@ -745,7 +745,7 @@ PrefabInstance:
     - target: {fileID: 83987292653328957, guid: 6474a1d5567974254b495d0e99f590ee,
         type: 3}
       propertyPath: joystickFireSensitivity
-      value: 0.861
+      value: 0.456
       objectReference: {fileID: 0}
     - target: {fileID: 1863806359441200833, guid: 6474a1d5567974254b495d0e99f590ee,
         type: 3}
