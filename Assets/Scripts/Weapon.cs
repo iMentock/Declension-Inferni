@@ -1,10 +1,13 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
     public GameObject projectile;
     public Transform shotPoint;
     public float timeBetweenShots;
+    public Joystick rotationJoystick;
+    [Range(0f, 0.99f)] public float joystickFireSensitivity;
 
     private float _shotTime;
     //private Animator cameraAnim;
@@ -23,7 +26,10 @@ public class Weapon : MonoBehaviour
         //Quaternion rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
         //transform.rotation = rotation;
 
-        if (Input.GetMouseButton(0))
+        float horizontalValue = Math.Abs(rotationJoystick.Horizontal);
+        float verticlValue = Math.Abs(rotationJoystick.Vertical);
+        print(verticlValue);
+        if (horizontalValue >= joystickFireSensitivity || verticlValue >= joystickFireSensitivity)
         {
             if (Time.time >= _shotTime)
             {
@@ -34,5 +40,17 @@ public class Weapon : MonoBehaviour
                 _shotTime = Time.time + timeBetweenShots;
             }
         }
+
+        //if (Input.GetMouseButton(0))
+        //{
+        //    if (Time.time >= _shotTime)
+        //    {
+        //        // If weapon is facing right
+        //        //Quaternion bulletRotate = Quaternion.Euler(0f, 0f, -90f);
+        //        Instantiate(projectile, shotPoint.position, transform.rotation);
+        //        //cameraAnim.SetTrigger("shake");
+        //        _shotTime = Time.time + timeBetweenShots;
+        //    }
+        //}
     }
 }

@@ -6,6 +6,8 @@ public class Player : MonoBehaviour
     public float speed;
     public int health;
     public Transform weaponSpawnPoint;
+    public Joystick movementJoystick;
+    public Joystick rotationJoystick;
     //public Image[] hearts;
     //public Sprite fullHeart;
     //public Sprite emptyHeart;
@@ -25,14 +27,20 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        //Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        Vector2 moveInput = new Vector2(movementJoystick.Horizontal, movementJoystick.Vertical);
 
         // *** normalized will not move faster diagonally ***
         _moveAmount = moveInput.normalized * speed;
 
         // Face mouse
-        Vector2 direction = UnityEngine.Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        //Vector2 direction = UnityEngine.Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        //float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        //Quaternion rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
+        //transform.rotation = rotation;
+
+        Vector2 joystickDirection = rotationJoystick.Direction;
+        float angle = Mathf.Atan2(joystickDirection.y, joystickDirection.x) * Mathf.Rad2Deg;
         Quaternion rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
         transform.rotation = rotation;
 
