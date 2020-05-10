@@ -450,7 +450,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   randomItems: []
-  randomEnemies: []
+  randomEnemies:
+  - {fileID: 5469642420442074011, guid: 303d8e663bbcb43a5a5c4ffdb3e36554, type: 3}
   roundedEdges: []
   floorPrefab: {fileID: 3355767877796136902, guid: 014d326e724db4823881dc389afab141,
     type: 3}
@@ -462,7 +463,7 @@ MonoBehaviour:
     type: 3}
   totalFloorCount: 850
   itemSpawnPercent: 0
-  enemySpawnPercent: 0
+  enemySpawnPercent: 1
   roomMaxWidth: 6
   roomMaxHeight: 7
   useRoundedEdges: 0
@@ -540,7 +541,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7
+  orthographic size: 4
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -732,6 +733,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 46665917867159539, guid: 6474a1d5567974254b495d0e99f590ee,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.741
+      objectReference: {fileID: 0}
+    - target: {fileID: 46665917867159539, guid: 6474a1d5567974254b495d0e99f590ee,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.013
+      objectReference: {fileID: 0}
     - target: {fileID: 83987292653328957, guid: 6474a1d5567974254b495d0e99f590ee,
         type: 3}
       propertyPath: timeBetweenShots
@@ -746,6 +757,11 @@ PrefabInstance:
         type: 3}
       propertyPath: joystickFireSensitivity
       value: 0.456
+      objectReference: {fileID: 0}
+    - target: {fileID: 1035356193568537778, guid: 6474a1d5567974254b495d0e99f590ee,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1863806359441200833, guid: 6474a1d5567974254b495d0e99f590ee,
         type: 3}
@@ -876,6 +892,11 @@ PrefabInstance:
         type: 3}
       propertyPath: orthographic size
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4072438854164190507, guid: 6474a1d5567974254b495d0e99f590ee,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6474a1d5567974254b495d0e99f590ee, type: 3}

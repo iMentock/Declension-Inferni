@@ -60,11 +60,11 @@ public class Player : MonoBehaviour
         // Don't forget fixedDeltaTime to make frame rate independent
         _rigidbody.MovePosition(_rigidbody.position + _moveAmount * Time.fixedDeltaTime);
     }
-    /*
+
     public void TakeDamage(int damageAmount)
     {
         health -= damageAmount;
-        UpdateHealthUI(health);
+        //UpdateHealthUI(health);
         //hurtAnim.SetTrigger("hurt");
 
         if (health <= 0)
@@ -73,6 +73,7 @@ public class Player : MonoBehaviour
         }
     }
 
+    /*
     public void ChangeWeapon(Weapon weaponToEquip)
     {
         Destroy(GameObject.FindGameObjectWithTag("Weapon"));

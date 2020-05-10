@@ -28,7 +28,6 @@ public class Weapon : MonoBehaviour
 
         float horizontalValue = Math.Abs(rotationJoystick.Horizontal);
         float verticlValue = Math.Abs(rotationJoystick.Vertical);
-        print(verticlValue);
         if (horizontalValue >= joystickFireSensitivity || verticlValue >= joystickFireSensitivity)
         {
             if (Time.time >= _shotTime)
