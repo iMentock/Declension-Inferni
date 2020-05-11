@@ -451,7 +451,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   randomItems: []
   randomEnemies:
-  - {fileID: 5469642420442074011, guid: 303d8e663bbcb43a5a5c4ffdb3e36554, type: 3}
+  - {fileID: 3615340069630408304, guid: e668dc974bed84a09b2bc4c65cfe5297, type: 3}
   roundedEdges: []
   floorPrefab: {fileID: 3355767877796136902, guid: 014d326e724db4823881dc389afab141,
     type: 3}
@@ -463,11 +463,11 @@ MonoBehaviour:
     type: 3}
   totalFloorCount: 850
   itemSpawnPercent: 0
-  enemySpawnPercent: 1
+  enemySpawnPercent: 5
   roomMaxWidth: 6
   roomMaxHeight: 7
   useRoundedEdges: 0
-  dungeonType: 2
+  dungeonType: 0
   windingHallPercent: 21
   minX: 0
   maxX: 0
@@ -733,36 +733,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 46665917867159539, guid: 6474a1d5567974254b495d0e99f590ee,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.741
-      objectReference: {fileID: 0}
-    - target: {fileID: 46665917867159539, guid: 6474a1d5567974254b495d0e99f590ee,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.013
-      objectReference: {fileID: 0}
-    - target: {fileID: 83987292653328957, guid: 6474a1d5567974254b495d0e99f590ee,
-        type: 3}
-      propertyPath: timeBetweenShots
-      value: 0.15
-      objectReference: {fileID: 0}
     - target: {fileID: 83987292653328957, guid: 6474a1d5567974254b495d0e99f590ee,
         type: 3}
       propertyPath: rotationJoystick
       value: 
       objectReference: {fileID: 1872848817}
-    - target: {fileID: 83987292653328957, guid: 6474a1d5567974254b495d0e99f590ee,
-        type: 3}
-      propertyPath: joystickFireSensitivity
-      value: 0.456
-      objectReference: {fileID: 0}
-    - target: {fileID: 1035356193568537778, guid: 6474a1d5567974254b495d0e99f590ee,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1863806359441200833, guid: 6474a1d5567974254b495d0e99f590ee,
         type: 3}
       propertyPath: m_Name
@@ -823,26 +798,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1863806359441200845, guid: 6474a1d5567974254b495d0e99f590ee,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 1863806359441200845, guid: 6474a1d5567974254b495d0e99f590ee,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 1863806359441200845, guid: 6474a1d5567974254b495d0e99f590ee,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 1863806359441200846, guid: 6474a1d5567974254b495d0e99f590ee,
-        type: 3}
-      propertyPath: joystick
-      value: 
-      objectReference: {fileID: 1866098481}
     - target: {fileID: 1863806359441200846, guid: 6474a1d5567974254b495d0e99f590ee,
         type: 3}
       propertyPath: movementJoystick
@@ -853,51 +808,6 @@ PrefabInstance:
       propertyPath: rotationJoystick
       value: 
       objectReference: {fileID: 1872848817}
-    - target: {fileID: 2841529139303794442, guid: 6474a1d5567974254b495d0e99f590ee,
-        type: 3}
-      propertyPath: m_TagString
-      value: MainCamera
-      objectReference: {fileID: 0}
-    - target: {fileID: 2841529139303794442, guid: 6474a1d5567974254b495d0e99f590ee,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2841529139303794445, guid: 6474a1d5567974254b495d0e99f590ee,
-        type: 3}
-      propertyPath: m_ClearFlags
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2841529139303794445, guid: 6474a1d5567974254b495d0e99f590ee,
-        type: 3}
-      propertyPath: m_BackGroundColor.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2841529139303794445, guid: 6474a1d5567974254b495d0e99f590ee,
-        type: 3}
-      propertyPath: m_BackGroundColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2841529139303794445, guid: 6474a1d5567974254b495d0e99f590ee,
-        type: 3}
-      propertyPath: m_BackGroundColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2841529139303794445, guid: 6474a1d5567974254b495d0e99f590ee,
-        type: 3}
-      propertyPath: orthographic
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2841529139303794445, guid: 6474a1d5567974254b495d0e99f590ee,
-        type: 3}
-      propertyPath: orthographic size
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4072438854164190507, guid: 6474a1d5567974254b495d0e99f590ee,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6474a1d5567974254b495d0e99f590ee, type: 3}
 --- !u!4 &4517868746982610557 stripped

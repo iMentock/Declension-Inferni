@@ -306,8 +306,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8733594769939413099}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.171, y: -2.059, z: -10.822682}
-  m_LocalScale: {x: 0.62172, y: 0.62172, z: 0.62172}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
   m_Children:
   - {fileID: 4471879669981722301}
   - {fileID: 3499849192946692036}
@@ -394,18 +394,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 3
   player: {fileID: 0}
-  speed: 6
+  speed: 4
   timeBetweenAttacks: 2
   damage: 0
-  pickupChance: 10
+  pickupChance: 0
   pickups:
   - {fileID: 6420004683798168966, guid: d952b0f74e77149af91c2920d9a5aa23, type: 3}
-  healthPickupChance: 5
+  healthPickupChance: 0
   healthPickup: {fileID: 3245729409419203294, guid: 184f8ef492b144451a7838fa642b6339,
     type: 3}
   deathEffect: {fileID: 1168584580930308919, guid: 02d61b6b6090942c88a1f04df1c3ceb9,
     type: 3}
-  stopDistance: 6
+  stopDistance: 3
   shotPoint: {fileID: 3499849192946692036}
   enemyBullet: {fileID: 2328600831128313284, guid: 9fd9ea32f651e44d88b85184d2b166d1,
     type: 3}
