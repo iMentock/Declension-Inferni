@@ -32,7 +32,6 @@ public class Projectile : MonoBehaviour
     // Built in function when trigger fires -- collision has collision object
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
         if (collision.tag == "Enemy")
         {
             collision.GetComponent<Enemy>().TakeDamage(damage);

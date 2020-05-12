@@ -7,6 +7,7 @@ public class FlyingEnemy : Enemy
     public float stopDistance;
     public Transform shotPoint;
     public GameObject enemyBullet;
+    public float distanceToStartPursuingPlayer;
 
     private float _attackTime;
     private Animator _anim;
@@ -22,15 +23,18 @@ public class FlyingEnemy : Enemy
     {
         if (player != null)
         {
-            if (Vector2.Distance(transform.position, player.position) > stopDistance)
+            if (Vector2.Distance(transform.position, player.position) < distanceToStartPursuingPlayer)
             {
-                transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
-            }
+                if (Vector2.Distance(transform.position, player.position) > stopDistance)
+                {
+                    transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+                }
 
-            if (Vector2.Distance(transform.position, player.position) <= stopDistance && Time.time > _attackTime)
-            {
-                _attackTime = Time.time + timeBetweenAttacks;
-                _anim.SetTrigger("attack");
+                if (Vector2.Distance(transform.position, player.position) <= stopDistance && Time.time > _attackTime)
+                {
+                    _attackTime = Time.time + timeBetweenAttacks;
+                    _anim.SetTrigger("attack");
+                }
             }
         }
     }

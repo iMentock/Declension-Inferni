@@ -39,7 +39,12 @@ public class FlyingEnemyBullet : MonoBehaviour
         if (collision.tag == "Player")
         {
             _playerScript.TakeDamage(damage);
-            Destroy(gameObject);
+            DestroyProjectile();
+        }
+
+        if (collision.tag == "Wall")
+        {
+            DestroyProjectile();
         }
     }
 }
