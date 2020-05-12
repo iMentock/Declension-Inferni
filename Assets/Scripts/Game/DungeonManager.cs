@@ -7,10 +7,10 @@ public enum DungeonType { Caverns, Rooms, Winding }
 
 public class DungeonManager : MonoBehaviour
 {
-    public GameObject[] randomItems, randomEnemies, roundedEdges;
+    public GameObject[] randomDecorations, randomEnemies, roundedEdges;
     public GameObject floorPrefab, wallPrefab, tilePrefab, exitPrefab;
     [Range(50, 5000)] public int totalFloorCount;
-    [Range(0, 100)] public int itemSpawnPercent;
+    [Range(0, 100)] public int decorationSpawnPercent;
     [Range(0, 100)] public int enemySpawnPercent;
     [Range(5, 10)] public int roomMaxWidth;
     [Range(5, 10)] public int roomMaxHeight;
@@ -179,6 +179,7 @@ public class DungeonManager : MonoBehaviour
             goTile.transform.SetParent(transform);
         }
 
+        // wait till all floors are placed
         while (FindObjectsOfType<TileSpawner>().Length > 0)
         {
             yield return null;
@@ -201,7 +202,7 @@ public class DungeonManager : MonoBehaviour
                         Collider2D hitRight = Physics2D.OverlapBox(new Vector2(x + 1, y), hitSize, 0, wallMask);
                         Collider2D hitBottom = Physics2D.OverlapBox(new Vector2(x, y - 1), hitSize, 0, wallMask);
                         Collider2D hitLeft = Physics2D.OverlapBox(new Vector2(x - 1, y), hitSize, 0, wallMask);
-                        RandomItems(hitFloor, hitTop, hitRight, hitBottom, hitLeft);
+                        RandomDecorations(hitFloor);
                         RandomEnemies(hitFloor, hitTop, hitRight, hitBottom, hitLeft);
                     }
                 }
@@ -215,6 +216,7 @@ public class DungeonManager : MonoBehaviour
     {
         if (useRoundedEdges)
         {
+            print("use rounded edges");
             Collider2D hitWall = Physics2D.OverlapBox(new Vector2(x, y), hitSize, 0, wallMask);
 
             if (hitWall)
@@ -230,6 +232,8 @@ public class DungeonManager : MonoBehaviour
                 if (!hitRight) { bitVal += 2; }
                 if (!hitBottom) { bitVal += 4; }
                 if (!hitLeft) { bitVal += 8; }
+
+                print("BITVAL --> " + bitVal);
 
                 if (bitVal > 0)
                 {
@@ -256,18 +260,15 @@ public class DungeonManager : MonoBehaviour
         }
     }
 
-    void RandomItems(Collider2D hitFloor, Collider2D hitTop, Collider2D hitRight, Collider2D hitBottom, Collider2D hitLeft)
+    void RandomDecorations(Collider2D hitFloor)
     {
-        if ((hitTop || hitRight || hitBottom || hitLeft) && !(hitTop && hitBottom) && !(hitLeft && hitRight))
+        int roll = Random.Range(1, 101);
+        if (roll <= decorationSpawnPercent)
         {
-            int roll = Random.Range(1, 101);
-            if (roll <= itemSpawnPercent)
-            {
-                int itemIndex = Random.Range(0, randomItems.Length);
-                GameObject goItem = Instantiate(randomItems[itemIndex], hitFloor.transform.position, Quaternion.identity) as GameObject;
-                goItem.name = randomItems[itemIndex].name;
-                goItem.transform.SetParent(hitFloor.transform);
-            }
+            int decorIndex = Random.Range(0, randomDecorations.Length);
+            GameObject goItem = Instantiate(randomDecorations[decorIndex], hitFloor.transform.position, Quaternion.identity) as GameObject;
+            goItem.name = randomDecorations[decorIndex].name;
+            goItem.transform.SetParent(hitFloor.transform);
         }
     }
 

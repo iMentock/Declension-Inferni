@@ -17,11 +17,10 @@ public class Summoner : Enemy
     private float _summontime;
     private Vector2 _targetPosition;
     private Animator _anim;
-    private float _timer;
 
     private float lastCheckTime = 0;
     private Vector3 lastCheckPos;
-    private float xSeconds = 3.0f;
+    private float xSeconds = 5.0f;
     private float yMuch = 1.0f;
 
     // Start is called before the first frame update
@@ -55,15 +54,24 @@ public class Summoner : Enemy
     // Update is called once per frame
     void Update()
     {
-        if ((Time.time - lastCheckTime) > xSeconds)
+        // if you're not at the final destination
+        if (Vector2.Distance(transform.position, _targetPosition) > .5f)
         {
-            if ((transform.position - lastCheckPos).magnitude < yMuch)
+            // check the time 
+            if ((Time.time - lastCheckTime) > xSeconds)
             {
-                float randomX = Random.Range(minX, maxX);
-                float randomY = Random.Range(minY, maxY);
+                // if you've been in the same position for 3 seconds
+                if ((transform.position - lastCheckPos).magnitude < yMuch)
+                {
+                    // make a new final destination
+                    print("stuck block");
+                    float randomX = Random.Range(minX, maxX);
+                    float randomY = Random.Range(minY, maxY);
 
-                _targetPosition = new Vector2(randomX, randomY);
+                    _targetPosition = new Vector2(randomX, randomY);
 
+                    lastCheckTime = Time.time;
+                }
                 lastCheckPos = transform.position;
                 lastCheckTime = Time.time;
             }
@@ -94,6 +102,7 @@ public class Summoner : Enemy
             }
             else
             {
+                print("In summon block");
                 // reached target position
                 _anim.SetBool("isRunning", false);
 
