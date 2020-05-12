@@ -216,7 +216,6 @@ public class DungeonManager : MonoBehaviour
     {
         if (useRoundedEdges)
         {
-            print("use rounded edges");
             Collider2D hitWall = Physics2D.OverlapBox(new Vector2(x, y), hitSize, 0, wallMask);
 
             if (hitWall)
@@ -232,8 +231,6 @@ public class DungeonManager : MonoBehaviour
                 if (!hitRight) { bitVal += 2; }
                 if (!hitBottom) { bitVal += 4; }
                 if (!hitLeft) { bitVal += 8; }
-
-                print("BITVAL --> " + bitVal);
 
                 if (bitVal > 0)
                 {
