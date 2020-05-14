@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
+using UnityScript.Steps;
 
 public class Enemy : MonoBehaviour
 {
@@ -62,13 +64,31 @@ public class Enemy : MonoBehaviour
 
         if (gameObject.GetComponent<MeleeEnemy>())
         {
-            float headDistanceX = Random.Range(-700f, 700f);
+            float ranDistanceX = Random.Range(-700f, 700f);
 
             GameObject deathHead = Instantiate(meleeEnemyDeathHead, transform.position, transform.rotation);
-            Rigidbody2D dhRigidBody2D = deathHead.GetComponent<Rigidbody2D>();
-            //dhRigidBody2D.AddForce(transform.up * 10.0f, ForceMode2D.Impulse);
-            dhRigidBody2D.AddForce(new Vector2(headDistanceX, 600.0f));
-            dhRigidBody2D.MoveRotation(Random.Range(1.0f, 360.0f));
+
+            // If it's an imp (has two rigid bodies
+            if (deathHead.GetComponentsInChildren<Rigidbody2D>().Count() > 1)
+            {
+                //Rigidbody2D[] eyeRigidBodys = deathHead.GetComponentsInChildren<Rigidbody2D>();
+
+                // Apply force to both eyes
+                //foreach (Rigidbody2D eye in eyeRigidBodys)
+                //{
+                //    eye.AddForce(new Vector2(ranDistanceX, 600.0f));
+                //    eye.MoveRotation(Random.Range(1.0f, 360.0f));
+                //}
+
+            }
+            else
+            {
+                Rigidbody2D dhRigidBody2D = deathHead.GetComponent<Rigidbody2D>();
+                //dhRigidBody2D.AddForce(transform.up * 10.0f, ForceMode2D.Impulse);
+                dhRigidBody2D.AddForce(new Vector2(ranDistanceX, 600.0f));
+                dhRigidBody2D.MoveRotation(Random.Range(1.0f, 360.0f));
+            }
+
         }
 
         if (gameObject.GetComponent<FlyingEnemy>())

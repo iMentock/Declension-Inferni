@@ -460,6 +460,7 @@ MonoBehaviour:
   - {fileID: 5469642420442074011, guid: 303d8e663bbcb43a5a5c4ffdb3e36554, type: 3}
   - {fileID: 8733594769939413099, guid: c7fb57b5d9d6d4016b4d099aa60b06f6, type: 3}
   - {fileID: 3615340069630408304, guid: e668dc974bed84a09b2bc4c65cfe5297, type: 3}
+  - {fileID: 2936114724282567268, guid: bb9d5d66aa2bf4ec1a3681e61577627f, type: 3}
   roundedEdges:
   - {fileID: 6883276892902226155, guid: d99eabaa012b14908a743b0229b54225, type: 3}
   - {fileID: 3104957055156028124, guid: 8dc20f16000234c5d8383c0b51a3ed50, type: 3}

@@ -143,6 +143,10 @@ MonoBehaviour:
     type: 3}
   deathSprite: {fileID: 2782151483767559675, guid: 822d49ddb8c134281a1d626368d09872,
     type: 3}
+  meleeEnemyDeathHead: {fileID: 6577084616676680446, guid: 0d94dbf011cf04b5dadbd6a186c9eb01,
+    type: 3}
+  leftDeathWing: {fileID: 0}
+  rightDeathWing: {fileID: 0}
   stopDistance: 3
   attackSpeed: 3
   distanceToStartPursuingPlayer: 15

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 
 public class DeathHead : MonoBehaviour
 {
@@ -14,17 +15,23 @@ public class DeathHead : MonoBehaviour
         {
             collider = GetComponent<CircleCollider2D>();
         }
+
+        else if (GetComponentInChildren<CapsuleCollider2D>())
+        {
+            collider = GetComponent<CapsuleCollider2D>();
+        }
+
         else
         {
             collider = GetComponent<BoxCollider2D>();
         }
 
-
         Destroy(rb, delayTime);
+
         if (collider)
         {
             Destroy(collider, delayTime);
         }
-
     }
+
 }
