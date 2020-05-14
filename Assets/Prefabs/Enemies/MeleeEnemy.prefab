@@ -391,6 +391,10 @@ MonoBehaviour:
   healthPickup: {fileID: 0}
   deathEffect: {fileID: 1168584580930308919, guid: 998a93c31d8df465996ee2f6fe120a0b,
     type: 3}
+  deathSprite: {fileID: 2782151483767559675, guid: 822d49ddb8c134281a1d626368d09872,
+    type: 3}
+  meleeEnemyDeathHead: {fileID: 2110966709060758168, guid: db92ebc1b2c644702a5df5720213559d,
+    type: 3}
   stopDistance: 1
   attackSpeed: 2
   distanceToStartPursuingPlayer: 30

@@ -18,6 +18,8 @@ public class Enemy : MonoBehaviour
     public int healthPickupChance;
     public GameObject healthPickup;
     public GameObject deathEffect;
+    public GameObject deathSprite;
+    public GameObject meleeEnemyDeathHead;
 
     public virtual void Start()
     {
@@ -44,8 +46,31 @@ public class Enemy : MonoBehaviour
                 Instantiate(healthPickup, transform.position, transform.rotation);
             }
 
-            Instantiate(deathEffect, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+
+            KillEnemy();
         }
+    }
+
+    public void KillEnemy()
+    {
+        // Particle effect
+        Instantiate(deathEffect, transform.position, Quaternion.identity);
+
+        // Make sprite
+        Instantiate(deathSprite, transform.position, Quaternion.identity);
+
+        if (gameObject.GetComponent<MeleeEnemy>())
+        {
+            float headDistanceX = Random.Range(-700f, 700f);
+
+            GameObject deathHead = Instantiate(meleeEnemyDeathHead, transform.position, transform.rotation);
+            Rigidbody2D dhRigidBody2D = deathHead.GetComponent<Rigidbody2D>();
+            //dhRigidBody2D.AddForce(transform.up * 10.0f, ForceMode2D.Impulse);
+            dhRigidBody2D.AddForce(new Vector2(headDistanceX, 600.0f));
+            dhRigidBody2D.MoveRotation(Random.Range(1.0f, 360.0f));
+        }
+
+        // Destroy the enemy entity
+        Destroy(gameObject);
     }
 }

@@ -558,6 +558,8 @@ MonoBehaviour:
     type: 3}
   deathEffect: {fileID: 1168584580930308919, guid: 998a93c31d8df465996ee2f6fe120a0b,
     type: 3}
+  deathSprite: {fileID: 2782151483767559675, guid: 822d49ddb8c134281a1d626368d09872,
+    type: 3}
   minX: -20
   maxX: 23
   minY: -28

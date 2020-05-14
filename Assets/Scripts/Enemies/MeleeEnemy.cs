@@ -3,20 +3,24 @@ using UnityEngine;
 
 public class MeleeEnemy : Enemy
 {
-
     public float stopDistance;
     public float attackSpeed;
     public float distanceToStartPursuingPlayer;
 
     private float attackTime;
 
-
-
     // Update is called once per frame
     void Update()
     {
         if (player != null)
         {
+            if (health <= 0)
+            {
+                print("deploying head");
+                // Make death head
+                Instantiate(meleeEnemyDeathHead, transform.position, Quaternion.identity);
+            }
+
             if (Vector2.Distance(transform.position, player.position) < distanceToStartPursuingPlayer)
             {
                 if (Vector2.Distance(transform.position, player.position) > stopDistance)
@@ -34,6 +38,7 @@ public class MeleeEnemy : Enemy
 
                 }
             }
+
         }
     }
 
