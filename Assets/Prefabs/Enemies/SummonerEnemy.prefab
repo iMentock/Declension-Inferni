@@ -553,6 +553,11 @@ MonoBehaviour:
   damage: 0
   pickupChance: 0
   pickups: []
+  summonerDeathParts:
+  - {fileID: 1608869779591608398, guid: a279a33fdb99941f59c6a72a8e767260, type: 3}
+  - {fileID: 2381093414498427785, guid: 922604c9694c94bd3845c9c84b626191, type: 3}
+  - {fileID: 4275674709898165095, guid: 0e0b148bdb6f54b10baf6b11b6facfd9, type: 3}
+  - {fileID: 2416627553137697856, guid: e2eafeab72d144f8f9fae46dbc8e803f, type: 3}
   healthPickupChance: 0
   healthPickup: {fileID: 3245729409419203294, guid: 184f8ef492b144451a7838fa642b6339,
     type: 3}
@@ -560,6 +565,9 @@ MonoBehaviour:
     type: 3}
   deathSprite: {fileID: 2782151483767559675, guid: 822d49ddb8c134281a1d626368d09872,
     type: 3}
+  meleeEnemyDeathHead: {fileID: 0}
+  leftDeathWing: {fileID: 0}
+  rightDeathWing: {fileID: 0}
   minX: -20
   maxX: 23
   minY: -28

@@ -14,13 +14,6 @@ public class MeleeEnemy : Enemy
     {
         if (player != null)
         {
-            if (health <= 0)
-            {
-                print("deploying head");
-                // Make death head
-                Instantiate(meleeEnemyDeathHead, transform.position, Quaternion.identity);
-            }
-
             if (Vector2.Distance(transform.position, player.position) < distanceToStartPursuingPlayer)
             {
                 if (Vector2.Distance(transform.position, player.position) > stopDistance)

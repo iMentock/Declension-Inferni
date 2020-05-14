@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
     public int damage;
 
     public int pickupChance;
-    public GameObject[] pickups;
+    public GameObject[] pickups, summonerDeathParts;
 
     public int healthPickupChance;
     public GameObject healthPickup;
@@ -62,24 +62,30 @@ public class Enemy : MonoBehaviour
         // Make sprite
         Instantiate(deathSprite, transform.position, Quaternion.identity);
 
+        // Body Parts
+        SpewBodyParts();
+
+        // Destroy the enemy entity
+        Destroy(gameObject);
+    }
+
+    private void SpewBodyParts()
+    {
         if (gameObject.GetComponent<MeleeEnemy>())
         {
             float ranDistanceX = Random.Range(-700f, 700f);
 
             GameObject deathHead = Instantiate(meleeEnemyDeathHead, transform.position, transform.rotation);
 
-            // If it's an imp (has two rigid bodies
             if (deathHead.GetComponentsInChildren<Rigidbody2D>().Count() > 1)
             {
-                //Rigidbody2D[] eyeRigidBodys = deathHead.GetComponentsInChildren<Rigidbody2D>();
-
-                // Apply force to both eyes
-                //foreach (Rigidbody2D eye in eyeRigidBodys)
-                //{
-                //    eye.AddForce(new Vector2(ranDistanceX, 600.0f));
-                //    eye.MoveRotation(Random.Range(1.0f, 360.0f));
-                //}
-
+                foreach (Rigidbody2D eye in deathHead.GetComponentsInChildren<Rigidbody2D>())
+                {
+                    Rigidbody2D rb = eye.GetComponent<Rigidbody2D>();
+                    //dhRigidBody2D.AddForce(transform.up * 10.0f, ForceMode2D.Impulse);
+                    rb.AddForce(new Vector2(ranDistanceX, 600.0f));
+                    rb.MoveRotation(Random.Range(1.0f, 360.0f));
+                }
             }
             else
             {
@@ -88,6 +94,7 @@ public class Enemy : MonoBehaviour
                 dhRigidBody2D.AddForce(new Vector2(ranDistanceX, 600.0f));
                 dhRigidBody2D.MoveRotation(Random.Range(1.0f, 360.0f));
             }
+
 
         }
 
@@ -111,10 +118,21 @@ public class Enemy : MonoBehaviour
                 rightRigidBody2D.AddForce(new Vector2(distanceX, 60.0f));
                 rightRigidBody2D.MoveRotation(Random.Range(1.0f, 360.0f));
             }
-
         }
 
-        // Destroy the enemy entity
-        Destroy(gameObject);
+        if (gameObject.GetComponent<Summoner>())
+        {
+            float ranDistanceX = Random.Range(-700f, 700f);
+
+            foreach (GameObject bodyPart in summonerDeathParts)
+            {
+                Instantiate(bodyPart, transform.position + new Vector3(Random.Range(-0.3f, 0.3f), Random.Range(0.0f, 0.3f)), transform.rotation);
+
+                Rigidbody2D rb = bodyPart.GetComponent<Rigidbody2D>();
+
+                rb.AddForce(new Vector2(ranDistanceX, 600.0f));
+                rb.MoveRotation(Random.Range(1.0f, 360.0f));
+            }
+        }
     }
 }
