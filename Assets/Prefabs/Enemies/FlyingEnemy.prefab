@@ -407,6 +407,11 @@ MonoBehaviour:
     type: 3}
   deathSprite: {fileID: 2782151483767559675, guid: 822d49ddb8c134281a1d626368d09872,
     type: 3}
+  meleeEnemyDeathHead: {fileID: 0}
+  leftDeathWing: {fileID: 3980302743352210833, guid: c136ca63b516f4209b731f5255539a35,
+    type: 3}
+  rightDeathWing: {fileID: 2074234490668817601, guid: f3c7d46471eaf446d8c35ef842df1f20,
+    type: 3}
   stopDistance: 3
   shotPoint: {fileID: 3499849192946692036}
   enemyBullet: {fileID: 2328600831128313284, guid: 9fd9ea32f651e44d88b85184d2b166d1,

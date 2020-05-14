@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour
     public GameObject deathEffect;
     public GameObject deathSprite;
     public GameObject meleeEnemyDeathHead;
+    public GameObject leftDeathWing, rightDeathWing;
 
     public virtual void Start()
     {
@@ -68,6 +69,29 @@ public class Enemy : MonoBehaviour
             //dhRigidBody2D.AddForce(transform.up * 10.0f, ForceMode2D.Impulse);
             dhRigidBody2D.AddForce(new Vector2(headDistanceX, 600.0f));
             dhRigidBody2D.MoveRotation(Random.Range(1.0f, 360.0f));
+        }
+
+        if (gameObject.GetComponent<FlyingEnemy>())
+        {
+            float distanceX = Random.Range(-700f, 700f);
+
+            GameObject leftWing = Instantiate(leftDeathWing, transform.position + new Vector3(-0.3f, 0.3f), transform.rotation);
+            GameObject rightWing = Instantiate(rightDeathWing, transform.position + new Vector3(0.3f, 0.3f), transform.rotation);
+            Rigidbody2D leftRigidBody2D = leftWing.GetComponent<Rigidbody2D>();
+            Rigidbody2D rightRigidBody2D = rightWing.GetComponent<Rigidbody2D>();
+            //dhRigidBody2D.AddForce(transform.up * 10.0f, ForceMode2D.Impulse);
+
+            // Add force to both wings
+            {
+                // Left
+                leftRigidBody2D.AddForce(new Vector2(distanceX, 60.0f));
+                leftRigidBody2D.MoveRotation(Random.Range(1.0f, 360.0f));
+
+                // Right
+                rightRigidBody2D.AddForce(new Vector2(distanceX, 60.0f));
+                rightRigidBody2D.MoveRotation(Random.Range(1.0f, 360.0f));
+            }
+
         }
 
         // Destroy the enemy entity

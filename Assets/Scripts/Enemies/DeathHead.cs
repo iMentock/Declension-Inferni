@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Boo.Lang;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class DeathHead : MonoBehaviour
 {
@@ -10,9 +7,24 @@ public class DeathHead : MonoBehaviour
     private void Start()
     {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        Collider2D collider = GetComponent<CircleCollider2D>();
+
+        Collider2D collider = null;
+
+        if (GetComponentInChildren<CircleCollider2D>())
+        {
+            collider = GetComponent<CircleCollider2D>();
+        }
+        else
+        {
+            collider = GetComponent<BoxCollider2D>();
+        }
+
 
         Destroy(rb, delayTime);
-        Destroy(collider, delayTime);
+        if (collider)
+        {
+            Destroy(collider, delayTime);
+        }
+
     }
 }
