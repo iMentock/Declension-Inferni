@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     //public Sprite fullHeart;
     //public Sprite emptyHeart;
     //public Animator hurtAnim;
+    public Text soulCountText;
 
     private Rigidbody2D _rigidbody;
     private Vector2 _moveAmount;
@@ -25,6 +26,7 @@ public class Player : MonoBehaviour
         // Set equal to rigidbody that is attached to character
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        soulCountText.text = soulCount.ToString();
     }
 
     private void Update()
@@ -78,7 +80,7 @@ public class Player : MonoBehaviour
     public void AddSoul()
     {
         soulCount++;
-        print("Soul Added --> " + soulCount);
+        soulCountText.text = soulCount.ToString();
     }
 
     /*
