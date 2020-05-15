@@ -135,8 +135,10 @@ MonoBehaviour:
   speed: 3
   timeBetweenAttacks: 3
   damage: 0
-  pickupChance: 0
-  pickups: []
+  pickupChance: 70
+  pickups:
+  - {fileID: 5668412923927805498, guid: b36066952befe488889210cc22b666d0, type: 3}
+  summonerDeathParts: []
   healthPickupChance: 0
   healthPickup: {fileID: 0}
   deathEffect: {fileID: 1168584580930308919, guid: 998a93c31d8df465996ee2f6fe120a0b,

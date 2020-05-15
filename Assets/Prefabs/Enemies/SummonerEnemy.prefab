@@ -551,8 +551,9 @@ MonoBehaviour:
   speed: 2
   timeBetweenAttacks: 2
   damage: 0
-  pickupChance: 0
-  pickups: []
+  pickupChance: 70
+  pickups:
+  - {fileID: 5668412923927805498, guid: b36066952befe488889210cc22b666d0, type: 3}
   summonerDeathParts:
   - {fileID: 1608869779591608398, guid: a279a33fdb99941f59c6a72a8e767260, type: 3}
   - {fileID: 2381093414498427785, guid: 922604c9694c94bd3845c9c84b626191, type: 3}

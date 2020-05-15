@@ -287,10 +287,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7296379363133834640}
+  - component: {fileID: -5455253915819007850}
   - component: {fileID: 1184842353176159314}
   - component: {fileID: 6764103155794517013}
   - component: {fileID: 2641700702620672463}
-  - component: {fileID: -5455253915819007850}
   m_Layer: 9
   m_Name: FlyingEnemy
   m_TagString: Enemy
@@ -314,6 +314,44 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-5455253915819007850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8733594769939413099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6c72e794a15b405dac24c9301e3fe3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 3
+  player: {fileID: 0}
+  speed: 4
+  timeBetweenAttacks: 2
+  damage: 1
+  pickupChance: 70
+  pickups:
+  - {fileID: 5668412923927805498, guid: b36066952befe488889210cc22b666d0, type: 3}
+  summonerDeathParts: []
+  healthPickupChance: 0
+  healthPickup: {fileID: 3245729409419203294, guid: 184f8ef492b144451a7838fa642b6339,
+    type: 3}
+  deathEffect: {fileID: 1168584580930308919, guid: 998a93c31d8df465996ee2f6fe120a0b,
+    type: 3}
+  deathSprite: {fileID: 2782151483767559675, guid: 822d49ddb8c134281a1d626368d09872,
+    type: 3}
+  meleeEnemyDeathHead: {fileID: 0}
+  leftDeathWing: {fileID: 3980302743352210833, guid: c136ca63b516f4209b731f5255539a35,
+    type: 3}
+  rightDeathWing: {fileID: 2074234490668817601, guid: f3c7d46471eaf446d8c35ef842df1f20,
+    type: 3}
+  stopDistance: 3
+  shotPoint: {fileID: 3499849192946692036}
+  enemyBullet: {fileID: 2328600831128313284, guid: 9fd9ea32f651e44d88b85184d2b166d1,
+    type: 3}
+  distanceToStartPursuingPlayer: 9
 --- !u!61 &1184842353176159314
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -380,43 +418,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &-5455253915819007850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8733594769939413099}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6c72e794a15b405dac24c9301e3fe3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 3
-  player: {fileID: 0}
-  speed: 4
-  timeBetweenAttacks: 2
-  damage: 1
-  pickupChance: 0
-  pickups:
-  - {fileID: 6420004683798168966, guid: d952b0f74e77149af91c2920d9a5aa23, type: 3}
-  healthPickupChance: 0
-  healthPickup: {fileID: 3245729409419203294, guid: 184f8ef492b144451a7838fa642b6339,
-    type: 3}
-  deathEffect: {fileID: 1168584580930308919, guid: 998a93c31d8df465996ee2f6fe120a0b,
-    type: 3}
-  deathSprite: {fileID: 2782151483767559675, guid: 822d49ddb8c134281a1d626368d09872,
-    type: 3}
-  meleeEnemyDeathHead: {fileID: 0}
-  leftDeathWing: {fileID: 3980302743352210833, guid: c136ca63b516f4209b731f5255539a35,
-    type: 3}
-  rightDeathWing: {fileID: 2074234490668817601, guid: f3c7d46471eaf446d8c35ef842df1f20,
-    type: 3}
-  stopDistance: 3
-  shotPoint: {fileID: 3499849192946692036}
-  enemyBullet: {fileID: 2328600831128313284, guid: 9fd9ea32f651e44d88b85184d2b166d1,
-    type: 3}
-  distanceToStartPursuingPlayer: 9
 --- !u!1 &9121102573625819730
 GameObject:
   m_ObjectHideFlags: 0
