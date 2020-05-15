@@ -17,6 +17,8 @@ public class Player : MonoBehaviour
     private Vector2 _moveAmount;
     private Animator _animator;
 
+    private int soulCount;
+
 
     private void Start()
     {
@@ -71,6 +73,12 @@ public class Player : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void AddSoul()
+    {
+        soulCount++;
+        print("Soul Added --> " + soulCount);
     }
 
     /*

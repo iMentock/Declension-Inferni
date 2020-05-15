@@ -4822,6 +4822,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5668412923927805493}
   - component: {fileID: 5668412923927805492}
+  - component: {fileID: 5374935109944229408}
+  - component: {fileID: 3644024972073232147}
   m_Layer: 0
   m_Name: SoulPickup
   m_TagString: Untagged
@@ -4864,6 +4866,34 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!58 &5374935109944229408
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5668412923927805498}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.14
+--- !u!114 &3644024972073232147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5668412923927805498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1173f55de01654784b96aa365328f089, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5668412924622402683
 GameObject:
   m_ObjectHideFlags: 0
@@ -4874,7 +4904,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5668412924622402682}
   - component: {fileID: 5668412924622402676}
-  - component: {fileID: 5668412924622402677}
   m_Layer: 0
   m_Name: orb graphic
   m_TagString: Untagged
@@ -4947,22 +4976,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &5668412924622402677
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5668412924622402683}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 3.17
 --- !u!1 &5668412924766976398
 GameObject:
   m_ObjectHideFlags: 0
