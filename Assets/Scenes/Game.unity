@@ -536,6 +536,7 @@ MonoBehaviour:
   - {fileID: 7111455049583612788, guid: 672c1da256a8943a388fa9fa238824a9, type: 3}
   - {fileID: 4109258670723311714, guid: db53c4fe1d02d4bdbb55e41761a4c5b5, type: 3}
   - {fileID: 168034, guid: e8cf63cc470b9cc40968a81370cbdb25, type: 3}
+  - {fileID: 5846897526351336447, guid: d60a76b509f6d4ae7a82af206527c4ac, type: 3}
   randomEnemies:
   - {fileID: 5469642420442074011, guid: 303d8e663bbcb43a5a5c4ffdb3e36554, type: 3}
   - {fileID: 8733594769939413099, guid: c7fb57b5d9d6d4016b4d099aa60b06f6, type: 3}
