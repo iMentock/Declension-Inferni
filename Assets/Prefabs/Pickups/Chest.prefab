@@ -46,11 +46,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 319d22c0cf11340d9834ad7bea9d5586, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
+  health: 10
   chestStateSprites:
   - {fileID: -2933962767766299615, guid: bb087dcc8856a4dfa8c9c57585a00d1f, type: 3}
   - {fileID: 6932034631808360657, guid: bb087dcc8856a4dfa8c9c57585a00d1f, type: 3}
   - {fileID: 2364599986951129811, guid: bb087dcc8856a4dfa8c9c57585a00d1f, type: 3}
+  weaponDrops: []
+  soulDrop: {fileID: 5668412923927805498, guid: b36066952befe488889210cc22b666d0,
+    type: 3}
 --- !u!212 &98626664144652370
 SpriteRenderer:
   m_ObjectHideFlags: 0
