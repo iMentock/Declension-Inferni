@@ -1,13 +1,12 @@
 ﻿using UnityEngine;
 
 public class EnemyIndicator : MonoBehaviour {
-    private GameObject enemy;
-
     public float hideDistance;
+    public GameObject enemy;
 
-    public void SetEnemy(GameObject enemyGameObject) {
-        enemy = enemyGameObject;
-    }
+    //public void SetEnemy(GameObject enemyGameObject) {
+    //    enemy = enemyGameObject;
+    //}
 
     private void Update() {
         if (enemy) {
@@ -21,8 +20,6 @@ public class EnemyIndicator : MonoBehaviour {
                 float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
                 transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             }
-        } else {
-            Destroy(gameObject);
         }
     }
 

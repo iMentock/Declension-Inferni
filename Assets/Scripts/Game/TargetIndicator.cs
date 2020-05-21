@@ -4,7 +4,7 @@ using UnityEngine;
 public class TargetIndicator : MonoBehaviour {
     public float hideDistance;
 
-    public GameObject environment;
+    public GameObject environment, enemyIndicator;
     private GameObject exit;
 
     private void Start() {
@@ -31,8 +31,9 @@ public class TargetIndicator : MonoBehaviour {
     }
 
     private void Update() {
+        int enemyCount = GetEnemyCount();
         if (exit) {
-            if (GetEnemyCount() <= 0) {
+            if (enemyCount <= 0) {
                 exit.GetComponent<ExitDoorway>().SetExitActive(true);
                 Vector3 dir = exit.transform.position - transform.position;
 
@@ -43,6 +44,14 @@ public class TargetIndicator : MonoBehaviour {
 
                     float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
                     transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                }
+            } else if (enemyCount != 0 && enemyCount < 6) {
+                foreach(EnemyIndicator enemyInd in gameObject.GetComponents<EnemyIndicator>()) {
+                    Destroy(enemyInd.gameObject);
+                }
+                foreach(GameObject enemy in GetEnemies()) {
+                    GameObject indicator = Instantiate(enemyIndicator, GameObject.FindGameObjectWithTag("Player").transform);
+                    indicator.GetComponent<EnemyIndicator>().enemy = enemy;
                 }
             }
         }
