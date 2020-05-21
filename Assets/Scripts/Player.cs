@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class Player : MonoBehaviour
-{
+public enum BuildType { mobile, web };
+public class Player : MonoBehaviour {
     public float speed;
     public int health;
     public Transform weaponSpawnPoint;
     public Joystick movementJoystick;
     public Joystick rotationJoystick;
+    public BuildType controllerType;
+  
     //public Image[] hearts;
     //public Sprite fullHeart;
     //public Sprite emptyHeart;
@@ -20,65 +22,66 @@ public class Player : MonoBehaviour
 
     private int soulCount;
 
-
-    private void Start()
-    {
+    private void Start() {
         // Set equal to rigidbody that is attached to character
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         soulCountText.text = soulCount.ToString();
+
+        if (controllerType == BuildType.web) {
+            movementJoystick.gameObject.SetActive(false);
+            rotationJoystick.gameObject.SetActive(false);
+        }
     }
 
-    private void Update()
-    {
-        //Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        Vector2 moveInput = new Vector2(movementJoystick.Horizontal, movementJoystick.Vertical);
+    private void Update() {
+        Vector2 moveInput;
 
-        // *** normalized will not move faster diagonally ***
-        _moveAmount = moveInput.normalized * speed;
+        if (controllerType == BuildType.mobile) {
+            moveInput = new Vector2(movementJoystick.Horizontal, movementJoystick.Vertical);
+            // *** normalized will not move faster diagonally ***
+            _moveAmount = moveInput.normalized * speed;
 
-        // Face mouse
-        //Vector2 direction = UnityEngine.Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        //float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        //Quaternion rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
-        //transform.rotation = rotation;
+            Vector2 joystickDirection = rotationJoystick.Direction;
+            float angle = Mathf.Atan2(joystickDirection.y, joystickDirection.x) * Mathf.Rad2Deg;
+            Quaternion rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
+            transform.rotation = rotation;
+        } else {
+            moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+            // *** normalized will not move faster diagonally ***
+            _moveAmount = moveInput.normalized * speed;
 
-        Vector2 joystickDirection = rotationJoystick.Direction;
-        float angle = Mathf.Atan2(joystickDirection.y, joystickDirection.x) * Mathf.Rad2Deg;
-        Quaternion rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
-        transform.rotation = rotation;
+            // Face mouse
+            Vector2 direction = UnityEngine.Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            Quaternion rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
+            transform.rotation = rotation;
+        }
 
         // Detect if player is moving
-        if (moveInput != Vector2.zero)
-        {
+        if (moveInput != Vector2.zero) {
             _animator.SetBool("isRunning", true);
-        }
-        else
-        {
+        } else {
             _animator.SetBool("isRunning", false);
         }
     }
 
-    private void FixedUpdate()
-    {
+    private void FixedUpdate() {
         // Don't forget fixedDeltaTime to make frame rate independent
         _rigidbody.MovePosition(_rigidbody.position + _moveAmount * Time.fixedDeltaTime);
     }
 
-    public void TakeDamage(int damageAmount)
-    {
+    public void TakeDamage(int damageAmount) {
         health -= damageAmount;
         //UpdateHealthUI(health);
         //hurtAnim.SetTrigger("hurt");
 
-        if (health <= 0)
-        {
+        if (health <= 0) {
             Destroy(gameObject);
         }
     }
 
-    public void AddSoul()
-    {
+    public void AddSoul() {
         soulCount++;
         soulCountText.text = soulCount.ToString();
     }

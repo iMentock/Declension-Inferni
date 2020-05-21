@@ -1,51 +1,65 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
-public class TargetIndicator : MonoBehaviour
-{
-    private Transform exitTile;
+public class TargetIndicator : MonoBehaviour {
     public float hideDistance;
 
-    private void Start()
-    {
-        StartCoroutine(GetExitLocation());
+    public GameObject environment;
+    private GameObject exit;
+
+    private void Start() {
+        StartCoroutine(WaitForExitToSpawn());
+
+        // Set arrow inactive
+        SetChildrenActive(false);
     }
 
-    IEnumerator GetExitLocation()
-    {
-        yield return new WaitForSeconds(2);
+    private IEnumerator WaitForExitToSpawn() {
+        yield return new WaitForSeconds(3.0f);
 
-        exitTile = GameObject.FindGameObjectWithTag("Exit").GetComponent<Transform>();
-
-        if (exitTile) print("Found");
-    }
-
-    private void Update()
-    {
-        if (exitTile)
+        // After waiting find the exit
         {
-            Vector3 dir = exitTile.transform.position - transform.position;
+            DungeonManager dm = environment.GetComponent<DungeonManager>();
+            exit = dm.GetExitObject();
+            print(exit);
 
-            if (dir.magnitude < hideDistance)
-            {
-                SetChildrenActive(false);
-            }
-            else
-            {
-                SetChildrenActive(true);
-
-                float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-                transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            // If it's found set it to inactive till enemies are destroyed
+            if (exit) {
+                exit.GetComponent<ExitDoorway>().SetExitActive(false);
             }
         }
     }
 
-    void SetChildrenActive(bool value)
-    {
-        foreach (Transform child in transform)
-        {
+    private void Update() {
+        if (exit) {
+            if (GetEnemyCount() <= 0) {
+                exit.GetComponent<ExitDoorway>().SetExitActive(true);
+                Vector3 dir = exit.transform.position - transform.position;
+
+                if (dir.magnitude < hideDistance) {
+                    SetChildrenActive(false);
+                } else {
+                    SetChildrenActive(true);
+
+                    float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+                    transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                }
+            }
+        }
+    }
+
+    private int GetEnemyCount() {
+        GameObject[] enemies = GetEnemies();
+        print("Enemies left --> " + enemies.Length);
+        return enemies.Length;
+    }
+
+    private GameObject[] GetEnemies() {
+        return GameObject.FindGameObjectsWithTag("Enemy");
+    }
+
+    private void SetChildrenActive(bool value) {
+        foreach (Transform child in transform) {
             child.gameObject.SetActive(value);
         }
     }
