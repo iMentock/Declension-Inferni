@@ -646,9 +646,12 @@ MonoBehaviour:
     type: 3}
   exitPrefab: {fileID: 2959897664787016450, guid: d343f820d7285408bb9a90287cd2b0d7,
     type: 3}
+  patrolPointPrefab: {fileID: 5634107057880449926, guid: 701383c4e19015b4fae4d964439b23d5,
+    type: 3}
   totalFloorCount: 850
   decorationSpawnPercent: 3
   enemySpawnPercent: 2
+  patrolPointSpawnPercent: 5
   roomMaxWidth: 9
   roomMaxHeight: 8
   useRoundedEdges: 1

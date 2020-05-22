@@ -7,10 +7,11 @@ public enum DungeonType { Caverns, Rooms, Winding }
 
 public class DungeonManager : MonoBehaviour {
     public GameObject[] randomDecorations, randomEnemies, roundedEdges;
-    public GameObject floorPrefab, wallPrefab, tilePrefab, exitPrefab;
+    public GameObject floorPrefab, wallPrefab, tilePrefab, exitPrefab, patrolPointPrefab;
     [Range(50, 5000)] public int totalFloorCount;
     [Range(0, 100)] public int decorationSpawnPercent;
     [Range(0, 100)] public int enemySpawnPercent;
+    [Range(0, 100)] public int patrolPointSpawnPercent;
     [Range(5, 10)] public int roomMaxWidth;
     [Range(5, 10)] public int roomMaxHeight;
     public bool useRoundedEdges;
@@ -172,6 +173,7 @@ public class DungeonManager : MonoBehaviour {
                         Collider2D hitLeft = Physics2D.OverlapBox(new Vector2(x - 1, y), hitSize, 0, wallMask);
                         RandomDecorations(hitFloor);
                         RandomEnemies(hitFloor, hitTop, hitRight, hitBottom, hitLeft);
+                        RandomPatrolPoints(hitFloor);
                     }
                 }
 
@@ -225,6 +227,15 @@ public class DungeonManager : MonoBehaviour {
             GameObject goItem = Instantiate(randomDecorations[decorIndex], hitFloor.transform.position, Quaternion.identity) as GameObject;
             goItem.name = randomDecorations[decorIndex].name;
             goItem.transform.SetParent(hitFloor.transform);
+        }
+    }
+
+    private void RandomPatrolPoints(Collider2D hitFloor) {
+        int roll = Random.Range(1, 101);
+        if (roll <= patrolPointSpawnPercent) {
+            GameObject goPatrolPoint = Instantiate(patrolPointPrefab, hitFloor.transform.position, Quaternion.identity) as GameObject;
+            goPatrolPoint.name = patrolPointPrefab.name;
+            goPatrolPoint.transform.SetParent(hitFloor.transform);
         }
     }
 

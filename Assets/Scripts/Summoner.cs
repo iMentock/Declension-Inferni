@@ -3,12 +3,6 @@ using UnityEngine;
 
 public class Summoner : Enemy
 {
-
-    public float minX;
-    public float maxX;
-    public float minY;
-    public float maxY;
-
     public Enemy enemyToSummon;
     public float timeBetweenSummons;
     public float meleeAttackSpeed;
@@ -20,8 +14,10 @@ public class Summoner : Enemy
 
     private float lastCheckTime = 0;
     private Vector3 lastCheckPos;
-    private float xSeconds = 5.0f;
+    private float xSeconds = 2.0f;
     private float yMuch = 1.0f;
+
+    private GameObject[] patrolPoints;
 
     // Start is called before the first frame update
     public override void Start()
@@ -29,27 +25,11 @@ public class Summoner : Enemy
         // Call the start script in the base class
         base.Start();
 
-        float randomX = Random.Range(minX, maxX);
-        float randomY = Random.Range(minY, maxY);
+        patrolPoints = GameObject.FindGameObjectsWithTag("PatrolPoint");
 
-        _targetPosition = new Vector2(randomX, randomY);
+        _targetPosition = patrolPoints[Random.Range(0, patrolPoints.Length)].transform.position;
         _anim = GetComponent<Animator>();
-
     }
-
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    print("TRIGGER");
-    //    if (collision.tag == "Wall" || collision.tag == "Enemy")
-    //    {
-    //        transform.position = Vector2.MoveTowards(transform.position, transform.position, 0);
-
-    //        float randomX = Random.Range(minX, maxX);
-    //        float randomY = Random.Range(minY, maxY);
-
-    //        _targetPosition = new Vector2(randomX, randomY);
-    //    }
-    //}
 
     // Update is called once per frame
     void Update()
@@ -65,10 +45,7 @@ public class Summoner : Enemy
                 {
                     // make a new final destination
                     print("stuck block");
-                    float randomX = Random.Range(minX, maxX);
-                    float randomY = Random.Range(minY, maxY);
-
-                    _targetPosition = new Vector2(randomX, randomY);
+                    _targetPosition = patrolPoints[Random.Range(0, patrolPoints.Length)].transform.position;
 
                     lastCheckTime = Time.time;
                 }

@@ -48,11 +48,9 @@ public class TargetIndicator : MonoBehaviour {
                 }
             } else if (enemyCount > 0 && enemyCount < 6) {
                 foreach (GameObject enemy in enemies) {
-                    //if (enemy.GetComponent<Enemy>()) {
-                        if (!enemy.GetComponent<Enemy>().GetIfIndicatorSet()) {
-                            enemy.GetComponent<Enemy>().SetIndicator();
-                        }
-                    //}
+                    if (!enemy.GetComponent<Enemy>().GetIfIndicatorSet()) {
+                        enemy.GetComponent<Enemy>().SetIndicator();
+                    }
                 }
             }
         }

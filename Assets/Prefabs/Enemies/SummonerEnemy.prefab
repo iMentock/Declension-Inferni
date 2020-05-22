@@ -569,13 +569,9 @@ MonoBehaviour:
   meleeEnemyDeathHead: {fileID: 0}
   leftDeathWing: {fileID: 0}
   rightDeathWing: {fileID: 0}
-  minX: -20
-  maxX: 23
-  minY: -28
-  maxY: 45
   enemyToSummon: {fileID: 1924452791696835385, guid: bb9d5d66aa2bf4ec1a3681e61577627f,
     type: 3}
-  timeBetweenSummons: 3
+  timeBetweenSummons: 5
   meleeAttackSpeed: 3
   stopDistance: 4
 --- !u!95 &3615340069630408206

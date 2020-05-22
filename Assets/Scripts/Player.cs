@@ -95,8 +95,6 @@ public class Player : MonoBehaviour {
     }
 
     public void AddEnemyIndicator(GameObject forEnemy, int objectID) {
-        print("[INDICATORS] Adding enemy indicator");
-
         GameObject indicator = Instantiate(enemyIndicatorPrefab, GameObject.FindGameObjectWithTag("Player").transform);
         indicator.GetComponent<EnemyIndicator>().SetEnemy(forEnemy);
 
