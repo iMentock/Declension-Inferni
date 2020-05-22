@@ -21,7 +21,6 @@ public class TargetIndicator : MonoBehaviour {
         {
             DungeonManager dm = environment.GetComponent<DungeonManager>();
             exit = dm.GetExitObject();
-            print(exit);
 
             // If it's found set it to inactive till enemies are destroyed
             if (exit) {
@@ -30,8 +29,10 @@ public class TargetIndicator : MonoBehaviour {
         }
     }
 
-    private void Update() {
+    private void FixedUpdate() {
         int enemyCount = GetEnemyCount();
+        GameObject[] enemies = GetEnemies();
+
         if (exit) {
             if (enemyCount <= 0) {
                 exit.GetComponent<ExitDoorway>().SetExitActive(true);
@@ -45,13 +46,13 @@ public class TargetIndicator : MonoBehaviour {
                     float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
                     transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
                 }
-            } else if (enemyCount != 0 && enemyCount < 6) {
-                foreach(EnemyIndicator enemyInd in gameObject.GetComponents<EnemyIndicator>()) {
-                    Destroy(enemyInd.gameObject);
-                }
-                foreach(GameObject enemy in GetEnemies()) {
-                    GameObject indicator = Instantiate(enemyIndicator, GameObject.FindGameObjectWithTag("Player").transform);
-                    indicator.GetComponent<EnemyIndicator>().enemy = enemy;
+            } else if (enemyCount > 0 && enemyCount < 6) {
+                foreach (GameObject enemy in enemies) {
+                    //if (enemy.GetComponent<Enemy>()) {
+                        if (!enemy.GetComponent<Enemy>().GetIfIndicatorSet()) {
+                            enemy.GetComponent<Enemy>().SetIndicator();
+                        }
+                    //}
                 }
             }
         }

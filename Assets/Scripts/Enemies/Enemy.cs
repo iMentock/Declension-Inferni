@@ -23,9 +23,13 @@ public class Enemy : MonoBehaviour
     public GameObject meleeEnemyDeathHead;
     public GameObject leftDeathWing, rightDeathWing;
 
+    private bool indicatorSet;
+    private int enemyObjectID;
+
     public virtual void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        enemyObjectID = gameObject.GetInstanceID();
     }
 
     public void TakeDamage(int damageAmount)
@@ -64,8 +68,25 @@ public class Enemy : MonoBehaviour
         // Body Parts
         SpewBodyParts();
 
+        // Destroy indicator if present
+        if(indicatorSet) {
+            player.GetComponent<Player>().RemoveEnemyIndicator(enemyObjectID);
+        }
+        
         // Destroy the enemy entity
         Destroy(gameObject);
+    }
+
+    public void SetIndicator() {
+        if(!indicatorSet) {
+            indicatorSet = true;
+
+            player.GetComponent<Player>().AddEnemyIndicator(gameObject, enemyObjectID);
+        }
+    }
+
+    public bool GetIfIndicatorSet() {
+        return indicatorSet;
     }
 
     private void SpewBodyParts()

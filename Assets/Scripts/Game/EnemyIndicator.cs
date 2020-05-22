@@ -2,11 +2,15 @@
 
 public class EnemyIndicator : MonoBehaviour {
     public float hideDistance;
-    public GameObject enemy;
+    private GameObject enemy;
 
-    //public void SetEnemy(GameObject enemyGameObject) {
-    //    enemy = enemyGameObject;
-    //}
+    public void SetEnemy(GameObject enemyGameObject) {
+        enemy = enemyGameObject;
+    }
+
+    public GameObject GetEnemy() {
+        return enemy;
+    }
 
     private void Update() {
         if (enemy) {

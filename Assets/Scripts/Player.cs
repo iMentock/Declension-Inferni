@@ -1,7 +1,10 @@
-﻿using UnityEngine;
+﻿using Boo.Lang;
+using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 public enum BuildType { mobile, web };
+
 public class Player : MonoBehaviour {
     public float speed;
     public int health;
@@ -9,7 +12,8 @@ public class Player : MonoBehaviour {
     public Joystick movementJoystick;
     public Joystick rotationJoystick;
     public BuildType controllerType;
-  
+    public GameObject enemyIndicatorPrefab;
+
     //public Image[] hearts;
     //public Sprite fullHeart;
     //public Sprite emptyHeart;
@@ -21,6 +25,7 @@ public class Player : MonoBehaviour {
     private Animator _animator;
 
     private int soulCount;
+    private Hashtable enemyIndicators = new Hashtable();
 
     private void Start() {
         // Set equal to rigidbody that is attached to character
@@ -37,25 +42,28 @@ public class Player : MonoBehaviour {
     private void Update() {
         Vector2 moveInput;
 
-        if (controllerType == BuildType.mobile) {
-            moveInput = new Vector2(movementJoystick.Horizontal, movementJoystick.Vertical);
-            // *** normalized will not move faster diagonally ***
-            _moveAmount = moveInput.normalized * speed;
+        // Movement based on build (web or mobile)
+        {
+            if (controllerType == BuildType.mobile) {
+                moveInput = new Vector2(movementJoystick.Horizontal, movementJoystick.Vertical);
+                // *** normalized will not move faster diagonally ***
+                _moveAmount = moveInput.normalized * speed;
 
-            Vector2 joystickDirection = rotationJoystick.Direction;
-            float angle = Mathf.Atan2(joystickDirection.y, joystickDirection.x) * Mathf.Rad2Deg;
-            Quaternion rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
-            transform.rotation = rotation;
-        } else {
-            moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-            // *** normalized will not move faster diagonally ***
-            _moveAmount = moveInput.normalized * speed;
+                Vector2 joystickDirection = rotationJoystick.Direction;
+                float angle = Mathf.Atan2(joystickDirection.y, joystickDirection.x) * Mathf.Rad2Deg;
+                Quaternion rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
+                transform.rotation = rotation;
+            } else {
+                moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+                // *** normalized will not move faster diagonally ***
+                _moveAmount = moveInput.normalized * speed;
 
-            // Face mouse
-            Vector2 direction = UnityEngine.Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            Quaternion rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
-            transform.rotation = rotation;
+                // Face mouse
+                Vector2 direction = UnityEngine.Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                Quaternion rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
+                transform.rotation = rotation;
+            }
         }
 
         // Detect if player is moving
@@ -84,6 +92,20 @@ public class Player : MonoBehaviour {
     public void AddSoul() {
         soulCount++;
         soulCountText.text = soulCount.ToString();
+    }
+
+    public void AddEnemyIndicator(GameObject forEnemy, int objectID) {
+        print("[INDICATORS] Adding enemy indicator");
+
+        GameObject indicator = Instantiate(enemyIndicatorPrefab, GameObject.FindGameObjectWithTag("Player").transform);
+        indicator.GetComponent<EnemyIndicator>().SetEnemy(forEnemy);
+
+        // Hash table construction <enemyObjectID, indicator>
+        enemyIndicators.Add(objectID, indicator);
+    }
+
+    public void RemoveEnemyIndicator(int enemyObjectID) {
+        Destroy((GameObject)enemyIndicators[enemyObjectID]);
     }
 
     /*
